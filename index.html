@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House of Thekua — Homemade with Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brown-deep:  #2A1506;
+  --brown-mid:   #3B1F0A;
+  --brown-warm:  #5C2E0E;
+  --gold:        #C8860A;
+  --gold-light:  #D4A843;
+  --gold-pale:   #E8C97A;
+  --cream:       #F5EDD6;
+  --cream-dark:  #EDE0C0;
+  --parchment:   #FAF4E8;
+  --text-dark:   #2A1506;
+  --text-mid:    #6B4226;
+  --text-muted:  #9B7355;
+  --wa:          #25D366;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--parchment);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 28px;
+  background: rgba(42,21,6,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,168,67,.25);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--gold-pale);
+  display: flex; align-items: center; gap: 7px;
+  letter-spacing: .01em;
+}
+.nav-logo small {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem; font-weight: 400; font-style: italic;
+  color: rgba(232,201,122,.6); display: block; line-height: 1;
+  letter-spacing: .06em;
+}
+.nav-right { display: flex; gap: 8px; }
+.btn-call {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 14px; border-radius: 6px;
+  background: var(--gold); color: var(--brown-deep);
+  font-weight: 700; font-size: 0.78rem;
+  text-decoration: none; transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.btn-call:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(200,134,10,.4); }
+.btn-wa {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 14px; border-radius: 6px;
+  background: var(--wa); color: #fff;
+  font-weight: 700; font-size: 0.78rem;
+  text-decoration: none; transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.btn-wa:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,211,102,.35); }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
+  padding: 120px 24px 90px;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(92,46,14,.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 30%, rgba(200,134,10,.12) 0%, transparent 50%),
+    linear-gradient(160deg, #1a0c03 0%, #2A1506 50%, #3B1F0A 100%);
+}
+
+/* grain texture overlay */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .04; mix-blend-mode: overlay;
+}
+
+/* decorative divider line */
+.ornament {
+  color: var(--gold-light); font-size: 1.1rem; letter-spacing: .3em;
+  margin: 10px 0; opacity: .7;
+}
+
+.hero-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold-light); font-weight: 600; margin-bottom: 6px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 900; color: var(--gold-pale);
+  letter-spacing: .04em; line-height: 1;
+  text-shadow: 0 4px 30px rgba(200,134,10,.3);
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 3vw, 1.55rem);
+  font-style: italic; color: var(--gold-light);
+  margin-top: 6px;
+}
+
+.hero-desc {
+  max-width: 480px; margin: 18px auto 0;
+  color: rgba(245,237,214,.65);
+  font-size: 0.95rem; line-height: 1.72;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+}
+
+.hero-btns {
+  margin-top: 34px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+}
+.btn-hero-primary {
+  padding: 13px 26px; border-radius: 7px;
+  background: var(--gold); color: var(--brown-deep);
+  font-weight: 700; font-size: 0.92rem;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,134,10,.5); }
+.btn-hero-outline {
+  padding: 13px 26px; border-radius: 7px;
+  background: transparent; color: var(--cream);
+  border: 1.5px solid rgba(232,201,122,.35);
+  font-weight: 600; font-size: 0.92rem;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+  transition: all .15s;
+}
+.btn-hero-outline:hover { border-color: var(--gold-light); color: var(--gold-pale); }
+
+/* trust badges in hero */
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  margin-top: 44px;
+}
+.hbadge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(245,237,214,.07);
+  border: 1px solid rgba(212,168,67,.2);
+  padding: 7px 14px; border-radius: 50px;
+  color: rgba(232,201,122,.8); font-size: 0.77rem; font-weight: 500;
+}
+
+/* ── STORY STRIP ── */
+.story-strip {
+  background: var(--brown-deep);
+  border-top: 1px solid rgba(212,168,67,.2);
+  border-bottom: 1px solid rgba(212,168,67,.2);
+  padding: 48px 24px;
+  text-align: center;
+}
+.story-strip h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 700;
+  color: var(--gold-pale); margin-bottom: 14px;
+}
+.story-strip p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.12rem; color: rgba(245,237,214,.7);
+  max-width: 600px; margin: 0 auto; line-height: 1.75;
+}
+.story-strip .wa-note {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 22px;
+  background: rgba(37,211,102,.1);
+  border: 1px solid rgba(37,211,102,.25);
+  padding: 10px 20px; border-radius: 50px;
+  color: #5ef299; font-size: 0.85rem; font-weight: 600;
+}
+
+/* ── SECTION ── */
+.section { padding: 80px 24px; }
+.sec-eyebrow {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 6px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 700;
+  color: var(--brown-deep); text-align: center;
+  line-height: 1.12; margin-bottom: 10px;
+}
+.sec-sub {
+  text-align: center; color: var(--text-muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; max-width: 500px; margin: 0 auto 48px;
+  line-height: 1.65;
+}
+
+/* ── INGREDIENTS ── */
+.ingredients-bg { background: var(--cream); }
+.ingredients-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 14px; max-width: 780px; margin: 0 auto;
+}
+.ing-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--parchment);
+  border: 1.5px solid rgba(200,134,10,.3);
+  padding: 10px 18px; border-radius: 50px;
+  font-size: 0.87rem; font-weight: 500; color: var(--text-mid);
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+}
+.ing-pill .ie { font-size: 1.2rem; }
+
+/* ── PRODUCTS ── */
+.products-bg { background: var(--parchment); }
+.products-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px; max-width: 960px; margin: 0 auto;
+}
+.product-card {
+  background: var(--cream);
+  border: 1.5px solid rgba(200,134,10,.22);
+  border-radius: 16px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(92,46,14,.14);
+}
+.card-top {
+  height: 150px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5.5rem;
+  background: linear-gradient(135deg, #3B1F0A 0%, #5C2E0E 100%);
+  position: relative;
+}
+.card-ribbon {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 50px;
+}
+.r-love   { background: #e85d7a; color: #fff; }
+.r-fav    { background: var(--gold); color: var(--brown-deep); }
+.r-festive{ background: #9B4DCA; color: #fff; }
+.r-bulk   { background: #2e8b57; color: #fff; }
+
+.card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--brown-deep);
+}
+.card-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+}
+.card-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; color: var(--text-muted); line-height: 1.55; flex: 1;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.ctag {
+  font-size: 0.68rem; padding: 2px 8px; border-radius: 4px;
+  background: rgba(200,134,10,.1); color: var(--gold);
+  border: 1px solid rgba(200,134,10,.2); font-weight: 500;
+}
+.card-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem; font-weight: 700; color: var(--brown-deep);
+  display: flex; align-items: baseline; gap: 5px;
+}
+.card-price span {
+  font-size: 0.78rem; color: var(--text-muted);
+  font-family: 'Inter', sans-serif; font-weight: 400;
+}
+.card-actions { display: flex; gap: 8px; margin-top: 6px; }
+.btn-order {
+  flex: 1; padding: 10px 0; border-radius: 8px;
+  background: var(--wa); color: #fff;
+  font-weight: 700; font-size: 0.83rem; text-align: center;
+  text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-order:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,211,102,.4); }
+.btn-enq {
+  padding: 10px 13px; border-radius: 8px;
+  background: var(--cream-dark); color: var(--brown-warm);
+  border: 1.5px solid rgba(200,134,10,.3);
+  font-weight: 600; font-size: 0.83rem;
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: background .15s;
+}
+.btn-enq:hover { background: rgba(200,134,10,.12); }
+
+/* ── HOW TO ORDER ── */
+.how-bg { background: var(--brown-deep); }
+.how-bg .sec-title { color: var(--gold-pale); }
+.how-bg .sec-sub { color: rgba(245,237,214,.6); }
+.how-bg .sec-eyebrow { color: var(--gold-light); }
+.steps-row {
+  display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+  max-width: 860px; margin: 0 auto;
+}
+.step-card {
+  flex: 1 1 180px; max-width: 200px;
+  text-align: center;
+  background: rgba(245,237,214,.05);
+  border: 1px solid rgba(212,168,67,.18);
+  border-radius: 14px; padding: 26px 18px;
+}
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 900; color: var(--gold);
+  line-height: 1; margin-bottom: 10px;
+}
+.step-card h4 { font-size: 0.93rem; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
+.step-card p { font-size: 0.8rem; color: rgba(245,237,214,.55); line-height: 1.55; }
+.step-arrow { align-self: center; color: var(--gold); font-size: 1.5rem; opacity: .5; }
+
+/* wa note box */
+.wa-info-box {
+  max-width: 480px; margin: 32px auto 0;
+  background: rgba(37,211,102,.07);
+  border: 1px solid rgba(37,211,102,.2);
+  border-radius: 12px; padding: 20px 24px; text-align: center;
+}
+.wa-info-box p { color: rgba(245,237,214,.75); font-size: 0.88rem; line-height: 1.65; }
+.wa-info-box strong { color: #5ef299; }
+
+/* ── TESTIMONIALS ── */
+.testi-bg { background: var(--cream); }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; max-width: 900px; margin: 0 auto;
+}
+.testi-card {
+  background: var(--parchment);
+  border: 1.5px solid rgba(200,134,10,.2);
+  border-radius: 14px; padding: 24px;
+}
+.testi-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--brown-warm));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--cream); font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  flex-shrink: 0;
+}
+.testi-name { font-weight: 700; font-size: 0.88rem; color: var(--brown-deep); }
+.testi-loc { font-size: 0.75rem; color: var(--text-muted); }
+.testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: .05em; margin-bottom: 10px; }
+.testi-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem; color: var(--text-mid); line-height: 1.65;
+  font-style: italic;
+}
+/* whatsapp chat bubble style for real testimonials */
+.chat-bubble {
+  background: #e7f8ee; border-radius: 0 12px 12px 12px;
+  padding: 12px 16px; font-size: 0.87rem; color: #1a3a25;
+  line-height: 1.6; border: 1px solid rgba(37,211,102,.2);
+  font-family: 'Inter', sans-serif; margin-top: 4px;
+}
+.chat-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; text-align: right; }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: linear-gradient(135deg, #3B1F0A 0%, #5C2E0E 100%);
+  border-top: 1px solid rgba(212,168,67,.2);
+  border-bottom: 1px solid rgba(212,168,67,.2);
+  padding: 64px 24px; text-align: center;
+}
+.cta-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.6rem); font-weight: 700;
+  color: var(--gold-pale); margin-bottom: 10px;
+}
+.cta-banner p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem; color: rgba(245,237,214,.65);
+  max-width: 480px; margin: 0 auto 28px; line-height: 1.65;
+}
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.cbtn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 13px 24px; border-radius: 8px;
+  font-weight: 700; font-size: 0.88rem;
+  text-decoration: none; transition: transform .15s, box-shadow .15s;
+}
+.cbtn:hover { transform: translateY(-2px); }
+.c-wa   { background: var(--wa); color: #fff; }
+.c-wa:hover { box-shadow: 0 6px 22px rgba(37,211,102,.4); }
+.c-call { background: var(--gold); color: var(--brown-deep); }
+.c-call:hover { box-shadow: 0 6px 22px rgba(200,134,10,.4); }
+.c-enq  { background: transparent; color: var(--gold-pale); border: 1.5px solid rgba(212,168,67,.4); }
+.c-enq:hover { border-color: var(--gold-light); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--brown-deep);
+  border-top: 1px solid rgba(212,168,67,.15);
+  text-align: center; padding: 40px 24px 110px;
+  color: rgba(245,237,214,.45); font-size: 0.8rem; line-height: 1.9;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem; font-weight: 700; color: var(--gold-pale);
+  margin-bottom: 4px;
+}
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; color: rgba(212,168,67,.55); font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+/* ── STICKY CTA ── */
+.sticky-cta {
+  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 300;
+  background: rgba(42,21,6,.97);
+  padding: 7px 10px; border-radius: 60px;
+  border: 1px solid rgba(212,168,67,.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 40px rgba(0,0,0,.45);
+  white-space: nowrap;
+}
+.s-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 9px 15px; border-radius: 50px;
+  font-weight: 700; font-size: 0.77rem;
+  text-decoration: none; transition: transform .15s;
+}
+.s-btn:hover { transform: translateY(-1px); }
+.s-call { background: var(--gold); color: var(--brown-deep); }
+.s-enq  { background: rgba(200,134,10,.12); color: var(--gold-light); border: 1px solid rgba(212,168,67,.25); }
+.s-wa   { background: var(--wa); color: #fff; }
+
+@media (max-width: 600px) {
+  nav { padding: 11px 14px; }
+  .nav-logo { font-size: 1rem; }
+  .btn-call, .btn-wa { font-size: 0.72rem; padding: 7px 10px; }
+  .sticky-cta { width: calc(100% - 18px); justify-content: center; }
+  .step-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    🫙 House of Thekua
+    <small>Homemade with Love</small>
+  </div>
+  <div class="nav-right">
+    <a class="btn-call" href="tel:917506064892">📞 Call</a>
+    <a class="btn-wa" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua!" target="_blank">💬 WhatsApp</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Homemade with Love · From Bihar</p>
+  <div class="ornament">— ❧ —</div>
+  <h1>THEKUA</h1>
+  <p class="hero-tagline">Rooted in Tradition. Made with Pure Ingredients.</p>
+  <p class="hero-desc">A traditional Bihari delicacy crafted the authentic way — with 100% whole wheat, pure ghee, jaggery, and lots of love. No preservatives. No shortcuts. Ever.</p>
+  <div class="hero-btns">
+    <a class="btn-hero-primary" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua!%20Please%20share%20the%20menu." target="_blank">🛒 Order on WhatsApp</a>
+    <a class="btn-hero-outline" href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20an%20enquiry%20about%20Thekua." target="_blank">❓ Ask Us Anything</a>
+  </div>
+  <div class="hero-badges">
+    <div class="hbadge">🌾 100% Whole Wheat</div>
+    <div class="hbadge">🍯 Jaggery Sweetened</div>
+    <div class="hbadge">🧈 Pure Ghee</div>
+    <div class="hbadge">🚫 No Preservatives</div>
+    <div class="hbadge">🥥 No Dalda · No Palm Oil</div>
+  </div>
+</div>
+
+<!-- STORY STRIP -->
+<div class="story-strip">
+  <h2>Not Just a Snack. A Piece of Home. 🤎</h2>
+  <p>Every jar of Thekua carries the warmth of Chhath Pooja, the smell of your grandmother's kitchen, and the taste that no bakery can replicate. We make it the old way — because some things should never change.</p>
+  <div class="wa-note">
+    💬 All orders are placed directly on WhatsApp — personal, simple, and human.
+  </div>
+</div>
+
+<!-- INGREDIENTS -->
+<section class="section ingredients-bg">
+  <p class="sec-eyebrow">Honest Ingredients</p>
+  <h2 class="sec-title">You Know Everything That Goes In</h2>
+  <p class="sec-sub">No hidden ingredients. No chemicals. Just what your grandmother would approve of.</p>
+  <div class="ingredients-grid">
+    <div class="ing-pill"><span class="ie">🌾</span> 100% Whole Wheat Flour</div>
+    <div class="ing-pill"><span class="ie">🧈</span> Pure Ghee</div>
+    <div class="ing-pill"><span class="ie">🫙</span> Rice Bran Oil</div>
+    <div class="ing-pill"><span class="ie">🍯</span> Jaggery (Gud)</div>
+    <div class="ing-pill"><span class="ie">🥥</span> Coconut</div>
+    <div class="ing-pill"><span class="ie">🌿</span> Saunf (Fennel)</div>
+    <div class="ing-pill"><span class="ie">💚</span> Elaichi (Cardamom)</div>
+    <div class="ing-pill"><span class="ie">🚫</span> No Preservatives</div>
+    <div class="ing-pill"><span class="ie">🚫</span> No Refined Sugar</div>
+    <div class="ing-pill"><span class="ie">🚫</span> No Dalda · No Palm Oil</div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section products-bg">
+  <p class="sec-eyebrow">Order Now</p>
+  <h2 class="sec-title">Choose Your Jar of Happiness</h2>
+  <p class="sec-sub">Every size ships across India. Order on WhatsApp in under 60 seconds.</p>
+  <div class="products-grid">
+
+    <!-- 1 -->
+  <div class="product-card">
+      <div class="card-top">🫙<div class="card-ribbon r-fav">Fan Favourite</div></div>
+      <div class="card-body">
+        <p class="card-tag">Classic</p>
+        <h3>Original Thekua — 250g</h3>
+        <p class="card-desc">The classic recipe. Whole wheat, ghee, jaggery, coconut, saunf & elaichi. Exactly as it's made during Chhath Pooja.</p>
+        <div class="card-tags">
+          <span class="ctag">Bestseller</span>
+          <span class="ctag">Chhath Special</span>
+        </div>
+        <div class="card-price">₹199 <span>/ 250g jar</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Original%20Thekua%20250g%20%E2%82%B9199" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20a%20question%20about%20Original%20Thekua%20250g" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="product-card">
+      <div class="card-top">🫙<div class="card-ribbon r-love">Most Gifted</div></div>
+      <div class="card-body">
+        <p class="card-tag">Value Pack</p>
+        <h3>Original Thekua — 500g</h3>
+        <p class="card-desc">Perfect for families or gifting to loved ones far from home. Same authentic recipe, bigger jar to share.</p>
+        <div class="card-tags">
+          <span class="ctag">Gift Ready</span>
+          <span class="ctag">Family Pack</span>
+        </div>
+        <div class="card-price">₹349 <span>/ 500g jar</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Original%20Thekua%20500g%20%E2%82%B9349" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20a%20question%20about%20Thekua%20500g" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="product-card">
+      <div class="card-top">🎁<div class="card-ribbon r-festive">Festive</div></div>
+      <div class="card-body">
+        <p class="card-tag">Gift Hamper</p>
+        <h3>Thekua Gift Box — 500g</h3>
+        <p class="card-desc">Beautifully packed gift box with a handwritten note. Ideal for Diwali, Chhath, birthdays, or sending a piece of Bihar to someone you love.</p>
+        <div class="card-tags">
+          <span class="ctag">Handwritten Note</span>
+          <span class="ctag">Pan-India Delivery</span>
+        </div>
+        <div class="card-price">₹399 <span>/ gift box</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua%20Gift%20Box%20%E2%82%B9399" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20know%20more%20about%20the%20Gift%20Box" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="product-card">
+      <div class="card-top">📦<div class="card-ribbon r-bulk">Bulk Deal</div></div>
+      <div class="card-body">
+        <p class="card-tag">Bulk / Corporate</p>
+        <h3>Bulk Order — 1kg+</h3>
+        <p class="card-desc">Planning a pooja, event, or office gifting? Order 1kg or more and get special pricing. Custom labels available for corporate orders.</p>
+        <div class="card-tags">
+          <span class="ctag">Custom Label</span>
+          <span class="ctag">Corporate Gift</span>
+          <span class="ctag">Pooja Orders</span>
+        </div>
+        <div class="card-price">₹580 <span>/ 1kg · bulk discount</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20place%20a%20bulk%20order%20for%20Thekua%201kg%2B" target="_blank">🛒 Enquire Bulk</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20know%20about%20custom%20label%20bulk%20orders" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section class="section how-bg">
+  <p class="sec-eyebrow">How It Works</p>
+  <h2 class="sec-title" style="color:var(--gold-pale)">Order in 3 Simple Steps</h2>
+  <p class="sec-sub" style="color:rgba(245,237,214,.6)">No app. No signup. Just WhatsApp — the way it should be.</p>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Tap "Order on WhatsApp"</h4>
+      <p>Click any order button. It opens WhatsApp with a pre-typed message — no typing needed.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Tell Us Your Order</h4>
+      <p>Share your quantity, delivery address, and any special requests. We confirm in minutes.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Pay & We Pack</h4>
+      <p>UPI / bank transfer. We pack fresh and ship within 24 hours of payment.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Receive Your Jar 🤎</h4>
+      <p>Delivered across India. Open the jar and taste something that feels like home.</p>
+    </div>
+  </div>
+  <div class="wa-info-box">
+    <p>💬 We currently take all orders through <strong>WhatsApp</strong> — it keeps things personal and lets us give you the best service. This website makes it <strong>even easier</strong> to see what we offer and order with one tap.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-bg">
+  <p class="sec-eyebrow">Customer Love 🤎</p>
+  <h2 class="sec-title">Real Feedback. Real Happiness.</h2>
+  <p class="sec-sub">What our customers say — straight from their WhatsApp chats.</p>
+  <div class="testi-grid">
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sakshi TDV</div>
+          <div class="testi-loc">Bangalore</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Just as it is made during our Chhath Pooja, same taste and emotion. My husband loved it too. Kudos to your di and mom 👏"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya M.</div>
+          <div class="testi-loc">Navi Mumbai</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Ordered for my parents who miss Bihar. When they opened the jar they got emotional. This is the exact taste from childhood. Will order every month!"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rahul K.</div>
+          <div class="testi-loc">Pune</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Gifted 3 boxes to my colleagues. Everyone asked me where I got it from. The packaging is beautiful and it arrived super fresh. Highly recommend!"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Ready to Taste Home? 🤎</h2>
+  <p>Order fresh Thekua directly on WhatsApp. Ships pan-India. Delivered with love, every time.</p>
+  <div class="cta-btns">
+    <a class="cbtn c-wa"   href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua!" target="_blank">🛒 Order on WhatsApp</a>
+    <a class="cbtn c-call" href="tel:+917506064892">📞 917506064892</a>
+    <a class="cbtn c-enq"  href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20an%20enquiry%20about%20Thekua." target="_blank">❓ Ask Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🫙 House of Thekua</div>
+  <div class="footer-tagline">Homemade with Love · with Love</div>
+  <p>📞 <span style="color:var(--gold-light)">+917506064892</span> &nbsp;|&nbsp; 📍 Kharghar, Navi Mumbai</p>
+  <p style="margin-top:5px;">🚚 Pan-India Delivery &nbsp;|&nbsp; Made Fresh to Order</p>
+  <p style="margin-top:16px; font-size:0.7rem; opacity:.3;">© 2025 House of Thekua. Made with love, from Bihar. | Demo page.</p>
+</footer>
+
+<!-- STICKY -->
+<div class="sticky-cta">
+  <a class="s-btn s-call" href="tel:+917506064892">📞 Call</a>
+  <a class="s-btn s-enq"  href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20an%20enquiry." target="_blank">❓ Enquire</a>
+  <a class="s-btn s-wa"   href="https://wa.me/<div class="product-card">
+      <div class="card-top">🫙<div class="card-ribbon r-fav">Fan Favourite</div></div>
+      <div class="card-body">
+        <p class="card-tag">Classic</p>
+        <h3>Original Thekua — 250g</h3>
+        <p class="card-desc">The classic recipe. Whole wheat, ghee, jaggery, coconut, saunf & elaichi. Exactly as it's made during Chhath Pooja.</p>
+        <div class="card-tags">
+          <span class="ctag">Bestseller</span>
+          <span class="ctag">Chhath Special</span>
+        </div>
+        <div class="card-price">₹199 <span>/ 250g jar</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Original%20Thekua%20250g%20%E2%82%B9199" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20a%20question%20about%20Original%20Thekua%20250g" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="product-card">
+      <div class="card-top">🫙<div class="card-ribbon r-love">Most Gifted</div></div>
+      <div class="card-body">
+        <p class="card-tag">Value Pack</p>
+        <h3>Original Thekua — 500g</h3>
+        <p class="card-desc">Perfect for families or gifting to loved ones far from home. Same authentic recipe, bigger jar to share.</p>
+        <div class="card-tags">
+          <span class="ctag">Gift Ready</span>
+          <span class="ctag">Family Pack</span>
+        </div>
+        <div class="card-price">₹349 <span>/ 500g jar</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Original%20Thekua%20500g%20%E2%82%B9349" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20a%20question%20about%20Thekua%20500g" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="product-card">
+      <div class="card-top">🎁<div class="card-ribbon r-festive">Festive</div></div>
+      <div class="card-body">
+        <p class="card-tag">Gift Hamper</p>
+        <h3>Thekua Gift Box — 500g</h3>
+        <p class="card-desc">Beautifully packed gift box with a handwritten note. Ideal for Diwali, Chhath, birthdays, or sending a piece of Bihar to someone you love.</p>
+        <div class="card-tags">
+          <span class="ctag">Handwritten Note</span>
+          <span class="ctag">Pan-India Delivery</span>
+        </div>
+        <div class="card-price">₹399 <span>/ gift box</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua%20Gift%20Box%20%E2%82%B9399" target="_blank">🛒 Order</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20know%20more%20about%20the%20Gift%20Box" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="product-card">
+      <div class="card-top">📦<div class="card-ribbon r-bulk">Bulk Deal</div></div>
+      <div class="card-body">
+        <p class="card-tag">Bulk / Corporate</p>
+        <h3>Bulk Order — 1kg+</h3>
+        <p class="card-desc">Planning a pooja, event, or office gifting? Order 1kg or more and get special pricing. Custom labels available for corporate orders.</p>
+        <div class="card-tags">
+          <span class="ctag">Custom Label</span>
+          <span class="ctag">Corporate Gift</span>
+          <span class="ctag">Pooja Orders</span>
+        </div>
+        <div class="card-price">₹580 <span>/ 1kg · bulk discount</span></div>
+        <div class="card-actions">
+          <a class="btn-order" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20place%20a%20bulk%20order%20for%20Thekua%201kg%2B" target="_blank">🛒 Enquire Bulk</a>
+          <a class="btn-enq" href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20know%20about%20custom%20label%20bulk%20orders" target="_blank">❓</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section class="section how-bg">
+  <p class="sec-eyebrow">How It Works</p>
+  <h2 class="sec-title" style="color:var(--gold-pale)">Order in 3 Simple Steps</h2>
+  <p class="sec-sub" style="color:rgba(245,237,214,.6)">No app. No signup. Just WhatsApp — the way it should be.</p>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Tap "Order on WhatsApp"</h4>
+      <p>Click any order button. It opens WhatsApp with a pre-typed message — no typing needed.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Tell Us Your Order</h4>
+      <p>Share your quantity, delivery address, and any special requests. We confirm in minutes.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Pay & We Pack</h4>
+      <p>UPI / bank transfer. We pack fresh and ship within 24 hours of payment.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Receive Your Jar 🤎</h4>
+      <p>Delivered across India. Open the jar and taste something that feels like home.</p>
+    </div>
+  </div>
+  <div class="wa-info-box">
+    <p>💬 We currently take all orders through <strong>WhatsApp</strong> — it keeps things personal and lets us give you the best service. This website makes it <strong>even easier</strong> to see what we offer and order with one tap.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-bg">
+  <p class="sec-eyebrow">Customer Love 🤎</p>
+  <h2 class="sec-title">Real Feedback. Real Happiness.</h2>
+  <p class="sec-sub">What our customers say — straight from their WhatsApp chats.</p>
+  <div class="testi-grid">
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sakshi TDV</div>
+          <div class="testi-loc">Bangalore</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Just as it is made during our Chhath Pooja, same taste and emotion. My husband loved it too. Kudos to your di and mom 👏"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya M.</div>
+          <div class="testi-loc">Navi Mumbai</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Ordered for my parents who miss Bihar. When they opened the jar they got emotional. This is the exact taste from childhood. Will order every month!"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rahul K.</div>
+          <div class="testi-loc">Pune</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="chat-bubble">"Gifted 3 boxes to my colleagues. Everyone asked me where I got it from. The packaging is beautiful and it arrived super fresh. Highly recommend!"</div>
+      <div class="chat-meta">via WhatsApp · Verified customer</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Ready to Taste Home? 🤎</h2>
+  <p>Order fresh Thekua directly on WhatsApp. Ships pan-India. Delivered with love, every time.</p>
+  <div class="cta-btns">
+    <a class="cbtn c-wa"   href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua!" target="_blank">🛒 Order on WhatsApp</a>
+    <a class="cbtn c-call" href="tel:+917506064892">📞 +91 70359 90042</a>
+    <a class="cbtn c-enq"  href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20an%20enquiry%20about%20Thekua." target="_blank">❓ Ask Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🫙 House of Thekua</div>
+  <div class="footer-tagline">Homemade with Love · From Bihar, with Love</div>
+  <p>📞 <span style="color:var(--gold-light)">+91 75060 64892</span> &nbsp;|&nbsp; 📍 Chennai</p>
+  <p style="margin-top:5px;">🚚 Pan-India Delivery &nbsp;|&nbsp; Made Fresh to Order</p>
+  <p style="margin-top:16px; font-size:0.7rem; opacity:.3;">© 2025 House of Thekua. Made with love| Demo page.</p>
+</footer>
+
+<!-- STICKY -->
+<div class="sticky-cta">
+  <a class="s-btn s-call" href="tel:917506064892">📞 Call</a>
+  <a class="s-btn s-enq"  href="https://wa.me/917506064892?text=Hi%2C%20I%20have%20an%20enquiry." target="_blank">❓ Enquire</a>
+  <a class="s-btn s-wa"   href="https://wa.me/917506064892?text=Hi%2C%20I%20want%20to%20order%20Thekua!" target="_blank">🛒 Order Now</a>
+</div>
+
+
+
+</body>
+</html>
